@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: url('https://dogonoithatdep.com.vn/wp-content/uploads/2018/11/gia-sach-gd55-1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .login-container {
+            width: 300px;
+            margin: 100px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: -5px;
+            margin-bottom: 5px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #0a43d6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background-color: #0635b7;
+        }
+
+        .register-link {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .register-link a {
+            color: red;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Sign in</h2>
+
+    <form th:action="@{/login}" th:object="${admin}" method="post">
+        <input type="text" th:field="*{username}" placeholder="Username"/>
+        <div class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+
+        <input type="password" th:field="*{password}" placeholder="Password"/>
+        <div class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+        <div class="error-message" th:if="${loginError}" th:text="${loginError}"></div>
+
+        <button type="submit" class="login-btn">Login</button>
+    </form>
+
+    <div class="register-link">
+        Don't have an account?
+        <a th:href="@{/register}">register</a>
+    </div>
+</div>
+</body>
+</html>

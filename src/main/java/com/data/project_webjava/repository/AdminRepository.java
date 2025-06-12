@@ -15,12 +15,10 @@ public class AdminRepository {
     public Admin findByUsernameAndPassword(String username, String password) {
         Session session = sessionFactory.openSession();
         try {
-            Query<Admin> query = session.createQuery("FROM Admin WHERE username = :u AND password = :p", Admin.class);
-            query.setParameter("u", username);
-            query.setParameter("p", password);
-            return query.uniqueResult();
-        } finally {
-            session.close();
+            return (Admin) session.createQuery("from Admin a where a.username = :u and a.password = :p").setParameter("u",username).setParameter("p",password).getSingleResult();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null ;
         }
     }
 }

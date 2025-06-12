@@ -42,6 +42,7 @@ public class Book {
 
     @Min(value = 1500, message = "Năm xuất bản phải sau năm 1500")
     @Max(value = 2100, message = "Năm xuất bản phải trước năm 2100")
+    @Column(name = "publish_year")
     private int publishYear;
 
     @Size(max = 255, message = "URL hình ảnh phải dưới 255 ký tự")
